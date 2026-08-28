@@ -1,4 +1,7 @@
 // 3.3.2: Database Client कनेक्शन बनाना
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
+
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
@@ -13,7 +16,7 @@ import * as schema from "./schema";
 const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
-    throw new Error("DATABASE_URL is not defined in environment variables");
+    throw new Error("DATABASE_URL is not defined in environment variables\nPlease check .env.local");
 }
 
 // Next.js Dev मोड में बार-बार नए DB कनेक्शन्स बनने से रोकने के लिए Singleton pattern
